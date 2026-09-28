@@ -1,11 +1,11 @@
 {
-  "name": "@barneyzhaoooo/dsh-theme-codex",
+  "name": "dsh-theme-native",
   "version": "0.1.0",
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BarneyZhaoooo/dsh-theme-codex.git"
+    "url": "git+https://github.com/BarneyZhaoooo/dsh-theme-native.git"
   },
   "keywords": [
     "deepseek",
@@ -15,7 +15,11 @@
     "theme"
   ],
   "icon": "./icon.svg",
-  "description": "Codex/Flexoki warm-neutral palette with custom accent, background and foreground, plus system font pickers for the DSH Web GUI.",
+  "description": "Native token-based themes for the DeepSeek Harness Web GUI, with custom colors and system font pickers.",
+  "homepage": "https://github.com/BarneyZhaoooo/dsh-theme-native#readme",
+  "bugs": {
+    "url": "https://github.com/BarneyZhaoooo/dsh-theme-native/issues"
+  },
   "exports": {
     ".": "./index.js",
     "./client": "./client.js",
@@ -40,11 +44,12 @@
     "client.js",
     "cordis.patch.yml",
     "icon.svg",
-    "locale/*.json"
+    "locale/*.json",
+    "README.md",
+    "LICENSE"
   ],
   "peerDependencies": {
-    "@deepseek-ai/dsh": ">=0.1.7-rc.2",
-    "react": "^18.2.0"
+    "@deepseek-ai/dsh": ">=0.1.7-rc.2 <0.1.8-0"
   },
   "engines": {
     "node": "^22.19.0 || >=24.0.0"

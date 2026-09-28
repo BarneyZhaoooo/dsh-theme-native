@@ -52,6 +52,8 @@ check(
 )
 check(typeof pkg.description === 'string' && pkg.description.length > 0, 'description is present')
 check(pkg.type === 'module', 'type is "module"')
+check(Object.keys(pkg.dependencies ?? {}).length === 0, 'no regular runtime dependencies are declared')
+check(typeof pkg.peerDependencies?.['@deepseek-ai/dsh'] === 'string', 'official DSH host is a peer dependency')
 
 // ---------------------------------------------------------------- bundle patch
 
@@ -126,8 +128,35 @@ for (const key of ['.', './client', './package.json', './locale/*.json']) {
 }
 
 const files = pkg.files ?? []
-for (const needed of ['index.js', 'client.js', 'cordis.patch.yml', 'icon.svg', 'locale/*.json']) {
+for (const needed of ['index.js', 'client.js', 'cordis.patch.yml', 'icon.svg', 'locale/*.json', 'README.md', 'LICENSE']) {
   check(files.includes(needed), `files includes "${needed}"`)
+}
+
+// The catalog reads screenshots.json from the repository or installable
+// subpackage, not from the npm tarball. Keep its paths relative, bounded, and
+// resolvable so the storefront never gets a silent 404.
+const screenshotsPath = path.join(pluginDir, 'screenshots.json')
+if (exists(screenshotsPath)) {
+  let screenshots = null
+  try {
+    screenshots = readJson(screenshotsPath)
+  } catch (error) {
+    check(false, 'screenshots.json parses', error.message)
+  }
+  if (Array.isArray(screenshots)) {
+    check(screenshots.length >= 1 && screenshots.length <= 8, 'screenshots.json has 1–8 entries', `${screenshots.length} entries`)
+    for (const relative of screenshots) {
+      const target = typeof relative === 'string' ? path.resolve(pluginDir, relative) : null
+      const escaped = target === null || !path.relative(pluginDir, target).split(path.sep).every((part) => part !== '..')
+      check(typeof relative === 'string' && relative.length > 0, 'each screenshot path is a non-empty string')
+      check(!escaped && !path.isAbsolute(relative), `screenshot path stays inside the package — ${relative ?? 'invalid'}`)
+      if (!escaped && typeof relative === 'string') check(exists(target), `screenshot exists — ${relative}`)
+    }
+  } else if (screenshots !== null) {
+    check(false, 'screenshots.json is an array')
+  }
+} else {
+  check(false, 'screenshots.json exists')
 }
 
 // ---------------------------------------------------------------- client section

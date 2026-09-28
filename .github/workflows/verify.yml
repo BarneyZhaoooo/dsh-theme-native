@@ -1,0 +1,35 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Proves the shipped client.js is a fresh emit of the current generator,
+      # then checks the inlined color math against the source modules.
+      - name: Verify the shipped client artifact
+        run: node tools/verify-runtime.mjs
+
+      # Proves the package is installable: patch, icon, locale, exports, and the
+      # package name / patch row id / loader id all agree.
+      - name: Verify the bundle manifest
+        run: node tools/verify-manifest.mjs
+
+      # Runs apply() and one settings-section render in Node, so a typo inside
+      # the plugin callback fails here instead of blanking the whole web boot.
+      - name: Simulate the client
+        run: node tools/simulate-client.mjs
+
+      - name: Preview the npm package
+        run: npm pack ./plugin --dry-run

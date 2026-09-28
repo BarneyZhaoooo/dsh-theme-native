@@ -1,5 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Theme">
-  <circle cx="32" cy="32" r="22" fill="#100f0f"/>
-  <path d="M32 10a22 22 0 0 0 0 44z" fill="#fffcf0"/>
-  <circle cx="32" cy="32" r="22" fill="none" stroke="#878580" stroke-width="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="dsh-theme-native">
+  <defs>
+    <clipPath id="disc">
+      <circle cx="32" cy="32" r="22"/>
+    </clipPath>
+  </defs>
+  <circle cx="32" cy="32" r="22" fill="#f5f3ed"/>
+  <g clip-path="url(#disc)">
+    <rect x="10" y="10" width="11" height="44" fill="#af3029"/>
+    <rect x="21" y="10" width="11" height="44" fill="#d0a215"/>
+    <rect x="32" y="10" width="11" height="44" fill="#66800b"/>
+    <rect x="43" y="10" width="11" height="44" fill="#205ea6"/>
+  </g>
+  <circle cx="32" cy="32" r="22" fill="none" stroke="#100f0f" stroke-width="2.5"/>
 </svg>

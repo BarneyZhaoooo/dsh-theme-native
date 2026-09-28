@@ -4,12 +4,12 @@
    and tools/lib/ladder.mjs inlined verbatim, so runtime recomputation and the
    shipped presets share one implementation. */
 window.__ModuleLoader__.load({
-	id: "@barneyzhaoooo/dsh-theme-codex",
+	id: "dsh-theme-native",
 	factory: (require) => {
 		const React = require('react')
 		const h = React.createElement
 
-		const PACKAGE = "@barneyzhaoooo/dsh-theme-codex"
+		const PACKAGE = "dsh-theme-native"
 		const KEY_ENABLED = 'codex-theme:enabled'
 		const KEY_PRESET = 'codex-theme:preset'
 		const KEY_FONT = 'codex-theme:font'

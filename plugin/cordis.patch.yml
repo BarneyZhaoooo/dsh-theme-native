@@ -4,5 +4,5 @@
 # by tools/build-presets.mjs + tools/emit-plugin.mjs from presets.json. This file
 # only mounts the plugin.
 - insert:
-    - id: dsh-theme-codex
-      name: '@barneyzhaoooo/dsh-theme-codex'
+    - id: dsh-theme-native
+      name: 'dsh-theme-native'

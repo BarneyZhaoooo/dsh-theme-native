@@ -1,0 +1,9 @@
+# Draft for the awesome-dsh-plugin submission.
+# Copy this as data/plugins/BarneyZhaoooo__dsh-theme-native--plugin.yml
+# in the catalog repository when the public repository is ready.
+url: https://github.com/BarneyZhaoooo/dsh-theme-native/tree/main/plugin
+name: BarneyZhaoooo/dsh-theme-native#plugin
+category: theme
+description:
+  en: A token-based DeepSeek Harness theme plugin with ten presets, custom colors, and system font pickers.
+  zh: 基于原生令牌的 DeepSeek Harness 主题插件，提供十套预设、自定义配色与系统字体选择。
