@@ -1,0 +1,8 @@
+# Codex 外观 — mounts this bundle's single loader row.
+#
+# The palette is NOT configured here: all 10 presets are generated into client.js
+# by tools/build-presets.mjs + tools/emit-plugin.mjs from presets.json. This file
+# only mounts the plugin.
+- insert:
+    - id: dsh-theme-codex
+      name: '@barneyzhaoooo/dsh-theme-codex'

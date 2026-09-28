@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DSH 主题设置 · 视觉方案选型</title>
+<style>
+  :root {
+    --bg: #f5f3ed;
+    --card: #fffdf8;
+    --sunken: #efece4;
+    --ink: #2f312d;
+    --ink-2: #6a6a62;
+    --ink-3: #918f86;
+    --line: rgba(47, 49, 45, 0.13);
+    --line-strong: rgba(47, 49, 45, 0.22);
+    --accent: #3d755d;
+    --accent-soft: rgba(61, 117, 93, 0.12);
+    --radius: 12px;
+    --shadow: 0 1px 2px rgba(47, 49, 45, 0.05), 0 8px 24px -16px rgba(47, 49, 45, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 14px/1.6 -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 28px 24px 96px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 8px; }
+  h2 { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin: 40px 0 14px; }
+  .sub { margin: 0; color: var(--ink-2); max-width: 760px; }
+  .hint { color: var(--ink-3); font-size: 13px; margin: 10px 0 0; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    appearance: none; border: 1px solid var(--line); background: var(--card);
+    color: var(--ink); border-radius: 999px; padding: 7px 14px; font: inherit; font-size: 13px;
+    cursor: pointer; transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .chip:hover { border-color: var(--line-strong); }
+  .chip[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); font-weight: 500; }
+  .chip code { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; font-size: 12px; color: var(--ink-3); }
+
+  .dirs { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .dir {
+    appearance: none; text-align: left; font: inherit; color: inherit; cursor: pointer;
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px;
+    transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  }
+  .dir:hover { border-color: var(--line-strong); }
+  .dir[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow); }
+  .dir > header { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
+  .dir h3 { font-size: 15px; font-weight: 600; margin: 0; }
+  .dir .tag { font-size: 11px; color: var(--ink-3); border: 1px solid var(--line); border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
+  .dir p { margin: 0 0 14px; color: var(--ink-2); font-size: 13px; }
+  .tradeoff { margin: 14px 0 0; padding-top: 12px; border-top: 1px dashed var(--line); color: var(--ink-3); font-size: 12.5px; }
+
+  /* ---------- shared mock primitives ---------- */
+  .mock { background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+  .grp { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .grp + .grp { margin-top: 12px; }
+  .grp-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; }
+  .grp-title { font-size: 14px; font-weight: 600; }
+  .grp-sub { font-size: 12.5px; color: var(--ink-3); margin-top: 2px; }
+  .srow { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 16px; border-top: 1px solid var(--line); min-height: 48px; }
+  .srow > .label { font-size: 13.5px; color: var(--ink); flex: 0 0 auto; }
+  .ctrl { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .select {
+    display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line);
+    border-radius: 9px; padding: 5px 10px; font-size: 13px; background: var(--card); color: var(--ink);
+  }
+  .select .caret { color: var(--ink-3); font-size: 10px; }
+  .select.ghost { background: none; }
+  .swatch { width: 18px; height: 18px; border-radius: 5px; border: 1px solid var(--line-strong); flex: 0 0 auto; }
+  .hex { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; font-size: 12px; color: var(--ink-2); }
+  .sw { width: 38px; height: 22px; border-radius: 999px; background: var(--accent); position: relative; flex: 0 0 auto; }
+  .sw::after { content: ""; position: absolute; top: 2px; left: 18px; width: 18px; height: 18px; border-radius: 50%; background: #fff; }
+  .sw.off { background: var(--line-strong); }
+  .sw.off::after { left: 2px; }
+  .foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 12.5px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; font-size: 12px; color: var(--ink-2); }
+  .badge.pass { border-color: rgba(61, 117, 93, .35); color: var(--accent); background: var(--accent-soft); }
+  .link { color: var(--accent); }
+
+  /* preset tiles */
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 10px; padding: 0 16px 16px; }
+  .tile { border: 0; background: none; padding: 0; cursor: pointer; font: inherit; }
+  .tile .pair { display: flex; height: 40px; border-radius: 9px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); }
+  .tile .half { flex: 1; padding: 6px 5px; display: flex; flex-direction: column; justify-content: space-between; }
+  .tile .bar { height: 4px; border-radius: 2px; opacity: .85; }
+  .tile .dot { width: 9px; height: 4px; border-radius: 2px; }
+  .tile .nm { display: block; margin-top: 6px; font-size: 11.5px; color: var(--ink-2); text-align: center; }
+  .tile[aria-pressed="true"] .pair { box-shadow: 0 0 0 2px var(--accent); }
+  .tile[aria-pressed="true"] .nm { color: var(--ink); font-weight: 600; }
+
+  /* preview canvas for direction C */
+  .studio { display: grid; grid-template-columns: 1.15fr 1fr; gap: 12px; padding: 14px; }
+  @media (max-width: 560px) { .studio { grid-template-columns: 1fr; } }
+  .canvas { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+  .canvas .top { display: flex; gap: 8px; padding: 10px; align-items: center; }
+  .canvas .body { padding: 4px 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .ln { height: 6px; border-radius: 3px; }
+  .pill { display: inline-block; border-radius: 7px; padding: 4px 10px; font-size: 11.5px; }
+  .meta { font-size: 11.5px; color: var(--ink-3); }
+
+  .dock {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    padding: 12px 24px; background: rgba(245, 243, 237, 0.92);
+    backdrop-filter: saturate(180%) blur(12px); border-top: 1px solid var(--line);
+  }
+  .dock .state { font-size: 13px; color: var(--ink-2); }
+  .dock .state b { color: var(--ink); font-weight: 600; }
+  .dock button {
+    appearance: none; border: 1px solid var(--accent); background: var(--accent); color: #fdfcf9;
+    border-radius: 9px; padding: 8px 16px; font: inherit; font-size: 13px; cursor: pointer;
+  }
+  .dock button.ghost { background: none; color: var(--ink); border-color: var(--line-strong); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>DSH 主题设置 · 视觉方案选型</h1>
+  <p class="sub">要解决的问题只有一个：这一页是 <b>DSH 的主题设置</b>，标题不该叫「Codex 外观」。美学与调色继续对齐 Codex 的水准，命名与归属回到 DSH。明暗模式仍留在官方「通用设置 → 外观」，这页只负责 主题 / 强调色 / 背景 / 前景 / 字体。</p>
+
+  <h2>1 · 命名</h2>
+  <div class="chips" id="names">
+    <button class="chip" aria-pressed="true" data-name="视觉风格">视觉风格</button>
+    <button class="chip" aria-pressed="false" data-name="外观">外观</button>
+    <button class="chip" aria-pressed="false" data-name="配色与字体">配色与字体</button>
+    <button class="chip" aria-pressed="false" data-name="视觉与配色">视觉与配色</button>
+    <button class="chip" aria-pressed="false" data-name="主题外观">主题外观</button>
+  </div>
+  <p class="hint">左侧导航项已经叫「主题」，所以分组标题不该再重复「主题」二字；「视觉风格」和 Codex 设置里的用词一致，但落在 DSH 语境里不自带厂商名。<code>Codex 外观</code> 直接删掉。</p>
+
+  <h2>2 · 版式方向</h2>
+  <div class="dirs" id="dirs">
+
+    <!-- A -->
+    <div class="dir" role="button" tabindex="0" aria-pressed="false" data-dir="A">
+      <header><h3>A · 系统级行式</h3><span class="tag">最像 DSH 原生</span></header>
+      <p>一个分组、若干行，标签在左、控件在右，1px 细分隔线。不嵌套卡片，密度接近系统设置。</p>
+      <div class="mock">
+        <div class="grp">
+          <div class="grp-head">
+            <div>
+              <div class="grp-title">视觉风格</div>
+              <div class="grp-sub">暖调中性色阶 · 明暗随系统</div>
+            </div>
+            <span class="sw" role="img" aria-label="已启用"></span>
+          </div>
+          <div class="srow">
+            <span class="label">主题</span>
+            <span class="ctrl"><span class="badge">Aa</span><span class="select">Flexoki <span class="caret">▾</span></span></span>
+          </div>
+          <div class="srow">
+            <span class="label">强调色</span>
+            <span class="ctrl"><span class="select ghost">自定义 <span class="caret">▾</span></span><span class="swatch" style="background:#3d755d"></span><span class="hex">#3D755D</span></span>
+          </div>
+          <div class="srow">
+            <span class="label">背景</span>
+            <span class="ctrl"><span class="swatch" style="background:#f5f3ed"></span><span class="hex">#F5F3ED</span></span>
+          </div>
+          <div class="srow">
+            <span class="label">前景</span>
+            <span class="ctrl"><span class="swatch" style="background:#2f312d"></span><span class="hex">#2F312D</span></span>
+          </div>
+          <div class="srow">
+            <span class="label">字体</span>
+            <span class="ctrl"><span class="select">系统 <span class="caret">▾</span></span></span>
+          </div>
+          <div class="foot">
+            <span class="badge pass">AA 11.84 · 11.98</span>
+            <span class="link">重置为默认设置</span>
+          </div>
+        </div>
+      </div>
+      <p class="tradeoff">取舍：最干净、最容易维护，但预设的视觉差异要靠下拉里的 Aa 预览来表达，弱化了"逛主题"的乐趣。</p>
+    </div>
+
+    <!-- B -->
+    <div class="dir" role="button" tabindex="0" aria-pressed="false" data-dir="B">
+      <header><h3>B · 画廊优先</h3><span class="tag">最少改动</span></header>
+      <p>保留现在的预设画廊，但把 tile 换成浅/深双联预览；微调收进可展开分组，页面从三张卡收敛成两张。</p>
+      <div class="mock">
+        <div class="grp">
+          <div class="grp-head">
+            <div>
+              <div class="grp-title">视觉风格</div>
+              <div class="grp-sub">10 套预设 · 每套含浅色与深色</div>
+            </div>
+            <span class="sw" role="img" aria-label="已启用"></span>
+          </div>
+          <div class="tiles" id="tiles-b"></div>
+        </div>
+        <div class="grp">
+          <div class="grp-head">
+            <div class="grp-title">微调</div>
+            <span class="badge pass">AA 11.84 · 11.98</span>
+          </div>
+          <div class="srow">
+            <span class="label">强调色</span>
+            <span class="ctrl"><span class="swatch" style="background:#3d755d"></span><span class="hex">#3D755D</span></span>
+          </div>
+          <div class="foot"><span>覆盖当前预设，语义色不动</span><span class="link">重置</span></div>
+        </div>
+      </div>
+      <p class="tradeoff">取舍：改动最小、上线最快，视觉提升主要在 tile 与间距；控件的"精工感"不如 A。</p>
+    </div>
+
+    <!-- C -->
+    <div class="dir" role="button" tabindex="0" aria-pressed="false" data-dir="C">
+      <header><h3>C · 工作室双栏</h3><span class="tag">调色最强</span></header>
+      <p>左边实时预览画布（浅深分屏、正文/次要/按钮/diff 一起看），右边是控件列。改一个色号当场看到后果。</p>
+      <div class="mock">
+        <div class="studio">
+          <div class="canvas" style="background:#f5f3ed">
+            <div class="top">
+              <span class="swatch" style="background:#3d755d"></span>
+              <span class="ln" style="background:#2f312d;width:38%"></span>
+            </div>
+            <div class="body">
+              <span class="ln" style="background:#2f312d;width:82%"></span>
+              <span class="ln" style="background:rgba(47,49,45,.45);width:64%"></span>
+              <span class="pill" style="background:#3d755d;color:#fdfcf9">主要操作</span>
+              <span class="pill" style="background:rgba(61,117,93,.14);color:#3d755d">次要操作</span>
+              <span class="meta">正文 11.84:1 · 三级 4.6:1</span>
+            </div>
+          </div>
+          <div class="canvas" style="background:#100f0f">
+            <div class="top">
+              <span class="swatch" style="background:#4385be"></span>
+              <span class="ln" style="background:#cecdc3;width:38%"></span>
+            </div>
+            <div class="body">
+              <span class="ln" style="background:#cecdc3;width:82%"></span>
+              <span class="ln" style="background:rgba(206,205,195,.45);width:64%"></span>
+              <span class="pill" style="background:#4385be;color:#100f0f">主要操作</span>
+              <span class="pill" style="background:rgba(67,133,190,.18);color:#8ab8e8">次要操作</span>
+              <span class="meta" style="color:#8a887f">正文 11.98:1 · 三级 4.5:1</span>
+            </div>
+          </div>
+        </div>
+        <div class="grp" style="margin:12px">
+          <div class="srow" style="border-top:0"><span class="label">主题</span><span class="ctrl"><span class="select">Flexoki <span class="caret">▾</span></span></span></div>
+          <div class="srow"><span class="label">强调色</span><span class="ctrl"><span class="swatch" style="background:#3d755d"></span><span class="hex">#3D755D</span></span></div>
+          <div class="srow"><span class="label">背景 / 前景</span><span class="ctrl"><span class="swatch" style="background:#f5f3ed"></span><span class="swatch" style="background:#2f312d"></span></span></div>
+          <div class="foot"><span>字体 系统</span><span class="link">重置</span></div>
+        </div>
+      </div>
+      <p class="tradeoff">取舍：调色体验最好、最"Codex"，但页面高度明显变长，窄窗口要退化成单列。</p>
+    </div>
+
+  </div>
+
+  <h2>3 · 我的建议</h2>
+  <p class="sub">命名用 <b>「视觉风格」</b>（导航项保持「主题」）。版式取 <b>A 的控件质感</b> + <b>C 的预览</b>：正文区一行行式设置，顶部或右侧留一块小的浅深双联预览。这样既拿到 Codex 那种"精工"观感，又不放弃"选主题"这件事本身的视觉直觉。B 作为最小改动版保留，如果你只想先改名、快速看到效果，选 B 也能立刻交付。</p>
+</div>
+
+<div class="dock">
+  <span class="state" id="state">已选：<b>方向 A</b> · 标题 <b>视觉风格</b></span>
+  <span style="display:flex;gap:8px">
+    <button class="ghost" id="copy">复制结论</button>
+  </span>
+</div>
+
+<script>
+  const PRESETS = [
+    { id: 'flexoki',    label: 'Flexoki',    l: ['#f5f3ed', '#2f312d', '#3d755d'], d: ['#100f0f', '#cecdc3', '#4385be'] },
+    { id: 'catppuccin', label: 'Catppuccin', l: ['#eff1f5', '#4c4f69', '#1e66f5'], d: ['#1e1e2e', '#cdd6f4', '#89b4fa'] },
+    { id: 'gruvbox',    label: 'Gruvbox',    l: ['#fbf1c7', '#3c3836', '#458588'], d: ['#282828', '#ebdbb2', '#458588'] },
+    { id: 'everforest', label: 'Everforest', l: ['#efebd4', '#5c6a72', '#7fbbb3'], d: ['#1e2326', '#d3c6aa', '#7fbbb3'] },
+    { id: 'github',     label: 'GitHub',     l: ['#ffffff', '#1f2328', '#0969da'], d: ['#0d1117', '#e6edf3', '#58a6ff'] },
+    { id: 'nord',       label: 'Nord',       l: ['#e5e9f0', '#414858', '#81a1c1'], d: ['#2e3440', '#d8dee9', '#81a1c1'] },
+    { id: 'rose-pine',  label: 'Rosé Pine',  l: ['#faf4ed', '#575279', '#56949f'], d: ['#232136', '#e0def4', '#9ccfd8'] },
+    { id: 'kanagawa',   label: 'Kanagawa',   l: ['#f2ecbc', '#545464', '#4d699b'], d: ['#1f1f28', '#dcd7ba', '#7e9cd8'] },
+    { id: 'modus',      label: 'Modus',      l: ['#fbf7f0', '#000000', '#0031a9'], d: ['#0d0e1c', '#ffffff', '#2fafff'] },
+    { id: 'atom-one',   label: 'Atom One',   l: ['#f9f9f9', '#2a2c33', '#2f5af3'], d: ['#21252b', '#abb2bf', '#61afef'] },
+  ]
+  const half = (bg, fg, accent) => `
+    <span class="half" style="background:${bg}">
+      <span class="bar" style="background:${fg};width:70%"></span>
+      <span class="dot" style="background:${accent}"></span>
+    </span>`
+  document.getElementById('tiles-b').innerHTML = PRESETS.map((p, i) => `
+    <button class="tile" aria-pressed="${i === 0}" data-preset="${p.id}">
+      <span class="pair">${half(...p.l)}${half(...p.d)}</span>
+      <span class="nm">${p.label}</span>
+    </button>`).join('')
+
+  const state = document.getElementById('state')
+  const dirs = [...document.querySelectorAll('.dir')]
+  const names = [...document.querySelectorAll('#names .chip')]
+  let pickDir = 'A'
+  let pickName = '视觉风格'
+
+  const render = () => {
+    dirs.forEach((el) => el.setAttribute('aria-pressed', String(el.dataset.dir === pickDir)))
+    names.forEach((el) => el.setAttribute('aria-pressed', String(el.dataset.name === pickName)))
+    state.innerHTML = `已选：<b>方向 ${pickDir}</b> · 标题 <b>${pickName}</b>`
+  }
+  dirs.forEach((el) => el.addEventListener('click', () => { pickDir = el.dataset.dir; render() }))
+  dirs.forEach((el) => el.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return
+    e.preventDefault()
+    pickDir = el.dataset.dir
+    render()
+  }))
+  names.forEach((el) => el.addEventListener('click', () => { pickName = el.dataset.name; render() }))
+  document.querySelectorAll('.tile').forEach((el) => el.addEventListener('click', (e) => {
+    e.stopPropagation()
+    el.parentElement.querySelectorAll('.tile').forEach((t) => t.setAttribute('aria-pressed', 'false'))
+    el.setAttribute('aria-pressed', 'true')
+  }))
+  document.getElementById('copy').addEventListener('click', async () => {
+    const text = `DSH 主题设置改名与版式：标题用「${pickName}」；版式选方向 ${pickDir}。`
+    try { await navigator.clipboard.writeText(text); document.getElementById('copy').textContent = '已复制' } catch { document.getElementById('copy').textContent = text }
+    setTimeout(() => { document.getElementById('copy').textContent = '复制结论' }, 1600)
+  })
+  render()
+</script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DSH 主题设置 · 评审收口稿</title>
+<style>
+  :root {
+    --bg: #f5f3ed; --card: #fffdf8; --sunken: #efece4;
+    --ink: #2f312d; --ink-2: #6a6a62; --ink-3: #918f86;
+    --line: rgba(47,49,45,.13); --line-strong: rgba(47,49,45,.22);
+    --accent: #3d755d; --accent-soft: rgba(61,117,93,.12);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font: 400 14px/1.6 -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased; padding: 26px 22px 44px;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+  h1 { font-size: 20px; font-weight: 600; margin: 0 0 6px; }
+  h2 { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-3); margin: 32px 0 12px; }
+  .sub { margin: 0; color: var(--ink-2); max-width: 700px; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--ink-3); }
+
+  .win { background: var(--bg); border: 1px solid var(--line-strong); border-radius: 14px; overflow: hidden; box-shadow: 0 18px 40px -28px rgba(47,49,45,.5); }
+  .bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; background: var(--sunken); border-bottom: 1px solid var(--line); }
+  .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--line-strong); }
+  .bar .name { margin-left: 8px; font-size: 12px; color: var(--ink-3); }
+  .panes { display: grid; grid-template-columns: 176px 1fr; }
+  .nav { border-right: 1px solid var(--line); padding: 14px 10px; display: flex; flex-direction: column; gap: 2px; }
+  .nav .item { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: 8px; font-size: 13.5px; color: var(--ink-2); }
+  .nav .item.on { background: var(--accent-soft); color: var(--ink); font-weight: 600; }
+  .nav .ico { width: 15px; height: 15px; border-radius: 4px; background: currentColor; opacity: .38; flex: 0 0 auto; }
+  .body { padding: 16px 18px; }
+
+  .grp { background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  .grp-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 16px; }
+  .grp-title { font-size: 14px; font-weight: 600; }
+  .grp-sub { font-size: 12.5px; color: var(--ink-3); margin-top: 2px; }
+  .srow { display: flex; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 11px 16px; border-top: 1px solid var(--line); min-height: 46px; flex-wrap: wrap; }
+  .srow .label { font-size: 13.5px; flex: 0 0 auto; }
+  .ctrl { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; margin-left: auto; }
+  .foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 16px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-3); flex-wrap: wrap; }
+  .badge { border: 1px solid rgba(61,117,93,.35); color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 3px 9px; font-size: 12px; white-space: nowrap; }
+  .link { color: var(--accent); }
+  .sw { width: 38px; height: 22px; border-radius: 999px; background: var(--accent); position: relative; flex: 0 0 auto; }
+  .sw::after { content: ""; position: absolute; top: 2px; left: 18px; width: 18px; height: 18px; border-radius: 50%; background: #fff; }
+
+  .iconbtn {
+    width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 8px;
+    background: none; color: var(--ink-3); font-size: 13px; cursor: pointer; display: inline-flex;
+    align-items: center; justify-content: center; padding: 0;
+  }
+  .iconbtn[disabled] { opacity: .45; cursor: default; }
+  .dropdown {
+    display: inline-flex; align-items: center; gap: 9px; border: 1px solid var(--line);
+    border-radius: 10px; padding: 5px 11px 5px 6px; background: var(--card); cursor: pointer;
+    font: inherit; font-size: 13.5px; color: var(--ink); min-width: 172px; justify-content: space-between;
+  }
+  .aa { width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+  .caret { color: var(--ink-3); font-size: 10px; }
+  .ctl { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 10px; padding: 4px 10px 4px 6px; background: var(--card); font-size: 13px; }
+  .chip { width: 18px; height: 18px; border-radius: 5px; border: 1px solid var(--line-strong); flex: 0 0 auto; }
+  .pairchip { width: 30px; height: 18px; border-radius: 5px; overflow: hidden; display: inline-flex; border: 1px solid var(--line-strong); flex: 0 0 auto; }
+  .pairchip i { flex: 1; }
+  .hex { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--ink-2); }
+  .dim { color: var(--ink-3); }
+
+  .popwrap { position: relative; }
+  .menu {
+    position: absolute; right: 16px; top: calc(100% - 4px); z-index: 2; width: 258px;
+    background: var(--card); border: 1px solid var(--line-strong); border-radius: 12px;
+    box-shadow: 0 24px 48px -24px rgba(47,49,45,.55); padding: 6px; max-height: 224px; overflow: auto;
+  }
+  .mi { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 8px; cursor: pointer; }
+  .mi:hover { background: var(--accent-soft); }
+  .mi[aria-selected="true"] { background: var(--accent-soft); }
+  .mi .nm { flex: 1; font-size: 13px; }
+  .mi .ck { color: var(--accent); font-size: 12px; }
+  .pair { width: 34px; height: 22px; border-radius: 6px; overflow: hidden; display: flex; border: 1px solid var(--line); flex: 0 0 auto; }
+  .pair i { flex: 1; display: block; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--ink-3); font-weight: 500; font-size: 12px; }
+  ul { margin: 8px 0 0; padding-left: 18px; color: var(--ink-2); }
+  li { margin: 5px 0; }
+  .note { background: var(--card); border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 10px; padding: 13px 16px; color: var(--ink-2); }
+  .note b { color: var(--ink); }
+  @media (max-width: 700px) {
+    .panes { grid-template-columns: 1fr; }
+    .nav { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+    .srow { flex-direction: column; align-items: stretch; }
+    .ctrl { margin-left: 0; justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>评审后的收口稿</h1>
+  <p class="sub">按 Codex 那行的语言统一：每行一个控件，控件自带预览。改动集中在四处，见下方对照。</p>
+
+  <h2>收起态</h2>
+  <div class="win">
+    <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="name">设置</span></div>
+    <div class="panes">
+      <div class="nav">
+        <div class="item"><span class="ico"></span>通用设置</div>
+        <div class="item"><span class="ico"></span>模型</div>
+        <div class="item"><span class="ico"></span>内置插件</div>
+        <div class="item"><span class="ico"></span>技能</div>
+        <div class="item on"><span class="ico"></span>主题</div>
+        <div class="item"><span class="ico"></span>Agent 预设</div>
+        <div class="item"><span class="ico"></span>IM 机器人</div>
+        <div class="item"><span class="ico"></span>插件市场</div>
+      </div>
+      <div class="body">
+        <div class="grp">
+          <div class="grp-head">
+            <div>
+              <div class="grp-title">视觉风格</div>
+              <div class="grp-sub">配色与字体</div>
+            </div>
+            <span class="sw"></span>
+          </div>
+          <div class="srow">
+            <span class="label">主题</span>
+            <span class="ctrl">
+              <button class="iconbtn" title="导出当前主题" disabled>⤓</button>
+              <button class="iconbtn" title="复制当前主题" disabled>⧉</button>
+              <span class="dropdown"><span style="display:flex;align-items:center;gap:9px"><span class="aa">Aa</span>Flexoki</span><span class="caret">▾</span></span>
+            </span>
+          </div>
+          <div class="srow">
+            <span class="label">强调色</span>
+            <span class="ctrl">
+              <span class="ctl"><span class="chip" style="background:#3d755d"></span><span class="hex">#3D755D</span></span>
+              <span class="dropdown" style="min-width:0"><span>跟随主题</span><span class="caret">▾</span></span>
+            </span>
+          </div>
+          <div class="srow">
+            <span class="label">背景</span>
+            <span class="ctrl">
+              <span class="ctl"><span class="pairchip"><i style="background:#f5f3ed"></i><i style="background:#100f0f"></i></span><span class="hex">#F5F3ED</span><span class="dim">/</span><span class="hex">#100F0F</span></span>
+            </span>
+          </div>
+          <div class="srow">
+            <span class="label">前景</span>
+            <span class="ctrl">
+              <span class="ctl"><span class="pairchip"><i style="background:#2f312d"></i><i style="background:#cecdc3"></i></span><span class="hex">#2F312D</span><span class="dim">/</span><span class="hex">#CECDC3</span></span>
+            </span>
+          </div>
+          <div class="srow">
+            <span class="label">字体</span>
+            <span class="ctrl"><span class="dropdown" style="min-width:0"><span>系统</span><span class="caret">▾</span></span></span>
+          </div>
+          <div class="foot">
+            <span class="badge">AA 浅 11.84 · 深 11.98</span>
+            <span class="link">重置为默认设置</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>展开态</h2>
+  <div class="win">
+    <div class="panes">
+      <div class="nav">
+        <div class="item"><span class="ico"></span>技能</div>
+        <div class="item on"><span class="ico"></span>主题</div>
+        <div class="item"><span class="ico"></span>Agent 预设</div>
+      </div>
+      <div class="body">
+        <div class="grp">
+          <div class="popwrap">
+            <div class="srow" style="border-top:0">
+              <span class="label">主题</span>
+              <span class="ctrl">
+                <button class="iconbtn" disabled>⤓</button>
+                <button class="iconbtn" disabled>⧉</button>
+                <span class="dropdown"><span style="display:flex;align-items:center;gap:9px"><span class="aa">Aa</span>Flexoki</span><span class="caret">▴</span></span>
+              </span>
+            </div>
+            <div class="menu" id="menu" role="listbox" aria-label="主题预设"></div>
+          </div>
+          <div class="srow" style="margin-top:170px"><span class="label">强调色</span><span class="ctrl"><span class="ctl"><span class="chip" style="background:#3d755d"></span><span class="hex">#3D755D</span></span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>这一轮改了什么</h2>
+  <table>
+    <tr><th>项</th><th>之前</th><th>现在</th></tr>
+    <tr><td>强调色</td><td>自创的一排彩色圆点</td><td>色块 + 色号 + 「跟随主题」下拉，和参考同一形状</td></tr>
+    <tr><td>背景 / 前景</td><td>挤成一行两个胶囊，且只显示一组值</td><td>拆成两行，每行一个浅深对照胶囊 + 两个色号</td></tr>
+    <tr><td>副标题</td><td>「明暗随系统切换」</td><td>「配色与字体」——明暗由官方设置管，写在这里会误导</td></tr>
+    <tr><td>迷你预览</td><td>带投影</td><td>只留 1px 描边 + 选中环，和参考的平面小窗一致</td></tr>
+    <tr><td>导出 / 复制</td><td>看起来能用</td><td>标为未启用；要么接上真实功能，要么先不放</td></tr>
+  </table>
+
+  <h2>实现时还要补的</h2>
+  <ul>
+    <li>下拉要做完整键盘语义：<code>aria-haspopup</code> / <code>aria-expanded</code>、方向键移动、Esc 关闭并把焦点还给按钮；菜单项 <code>role="option"</code> + <code>aria-selected</code>。</li>
+    <li>对比度徽标不能只靠红绿：不达标时同时把文字写成「低于 4.5:1」。</li>
+    <li>关闭「启用主题」后，下面几行要变成禁用态并说明原因，不能看着还能改。</li>
+    <li>窄容器（设置面板被压到 460px 以下）时，行改为上下排布、控件左对齐——已写进这版 CSS。</li>
+    <li>颜色一律走 alias token，深色模式自动跟随，不要在插件里写死浅色值。</li>
+  </ul>
+
+  <h2>侧边栏那一项</h2>
+  <div class="note"><b>不是插件的覆盖面问题。</b>macOS 下侧边栏被 DSH 自己的样式写成半透明层：固定蓝紫渐变 + 主题色只取约 40% 不透明度，再叠毛玻璃。值确实从 <code>#f9fafb</code> 变成 <code>#ebe9e3</code>，被冲淡后看不出来。属于 DSH chrome 没走 token，建议反馈官方。</div>
+</div>
+
+<script>
+  const P = [
+    { n: 'Flexoki',    l: ['#f5f3ed', '#2f312d'], d: ['#100f0f', '#cecdc3'] },
+    { n: 'Catppuccin', l: ['#eff1f5', '#4c4f69'], d: ['#1e1e2e', '#cdd6f4'] },
+    { n: 'Gruvbox',    l: ['#fbf1c7', '#3c3836'], d: ['#282828', '#ebdbb2'] },
+    { n: 'Everforest', l: ['#efebd4', '#5c6a72'], d: ['#1e2326', '#d3c6aa'] },
+    { n: 'GitHub',     l: ['#ffffff', '#1f2328'], d: ['#0d1117', '#e6edf3'] },
+    { n: 'Nord',       l: ['#e5e9f0', '#414858'], d: ['#2e3440', '#d8dee9'] },
+    { n: 'Rosé Pine',  l: ['#faf4ed', '#575279'], d: ['#232136', '#e0def4'] },
+    { n: 'Kanagawa',   l: ['#f2ecbc', '#545464'], d: ['#1f1f28', '#dcd7ba'] },
+    { n: 'Modus',      l: ['#fbf7f0', '#000000'], d: ['#0d0e1c', '#ffffff'] },
+    { n: 'Atom One',   l: ['#f9f9f9', '#2a2c33'], d: ['#21252b', '#abb2bf'] },
+  ]
+  document.getElementById('menu').innerHTML = P.map((p, i) => `
+    <div class="mi" role="option" aria-selected="${i === 0}">
+      <span class="pair"><i style="background:${p.l[0]}"></i><i style="background:${p.d[0]}"></i></span>
+      <span class="nm">${p.n}</span>
+      ${i === 0 ? '<span class="ck">✓</span>' : ''}
+    </div>`).join('')
+  document.querySelectorAll('.mi').forEach((el) => el.addEventListener('click', () => {
+    document.querySelectorAll('.mi').forEach((m) => { m.setAttribute('aria-selected', 'false'); m.querySelector('.ck')?.remove() })
+    el.setAttribute('aria-selected', 'true')
+    el.insertAdjacentHTML('beforeend', '<span class="ck">✓</span>')
+  }))
+</script>
+</body>
+</html>

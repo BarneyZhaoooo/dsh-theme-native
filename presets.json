@@ -1,0 +1,770 @@
+{
+  "generatedAt": "2026-09-28T05:02:06.604Z",
+  "sources": {
+    "themes": "Prowl.app bundled ghostty theme collection",
+    "codex": "local Codex desktop appearance config",
+    "baseline": "baseline-palette.json"
+  },
+  "defaultPreset": "flexoki",
+  "familyStops": {
+    "neutral-bluish": [
+      "00",
+      "50",
+      "60",
+      "75",
+      "100",
+      "150",
+      "200",
+      "300",
+      "400",
+      "500",
+      "600",
+      "700",
+      "750",
+      "800",
+      "850",
+      "875",
+      "900",
+      "950",
+      "1000"
+    ],
+    "neutral": [
+      "00",
+      "50",
+      "100",
+      "150",
+      "200",
+      "250",
+      "300",
+      "400",
+      "500",
+      "550",
+      "600",
+      "700",
+      "800",
+      "850",
+      "900",
+      "1000"
+    ],
+    "red": [
+      "50",
+      "100",
+      "400",
+      "400-a12",
+      "500",
+      "600",
+      "600-a08",
+      "900"
+    ],
+    "green": [
+      "100",
+      "400",
+      "500",
+      "500-a08",
+      "500-a12",
+      "900"
+    ],
+    "amber": [
+      "100",
+      "400",
+      "500",
+      "600",
+      "900"
+    ],
+    "blue": [
+      "50",
+      "50p",
+      "75",
+      "100",
+      "300",
+      "400",
+      "450",
+      "500",
+      "600",
+      "800",
+      "900",
+      "950"
+    ],
+    "deepseek": [
+      "50",
+      "100",
+      "200",
+      "300",
+      "400",
+      "450",
+      "500",
+      "600",
+      "700-delete",
+      "800",
+      "900"
+    ]
+  },
+  "fonts": {
+    "--dsw-font-family": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+    "--ds-font-family-code": "\"JetBrainsMono Nerd Font\", \"SFMono-Regular\", Menlo, Consolas, \"PingFang SC\", monospace"
+  },
+  "presets": [
+    {
+      "id": "flexoki",
+      "label": "Flexoki",
+      "theme": {
+        "light": "Flexoki Light",
+        "dark": "Flexoki Dark"
+      },
+      "sources": {
+        "lightBg": "#f5f3ed",
+        "lightFg": "#2f312d",
+        "darkBg": "#100f0f",
+        "darkFg": "#cecdc3",
+        "paper": "#fffcf0",
+        "red": {
+          "light": "#af3029",
+          "dark": "#d14d41"
+        },
+        "green": {
+          "light": "#66800b",
+          "dark": "#879a39"
+        },
+        "amber": {
+          "light": "#ad8301",
+          "dark": "#d0a215"
+        },
+        "blue": {
+          "light": "#205ea6",
+          "dark": "#4385be"
+        },
+        "deepseek": {
+          "light": "#3d755d",
+          "dark": "#4385be"
+        }
+      },
+      "preview": {
+        "lightBg": "#f5f3ed",
+        "darkBg": "#100f0f",
+        "lightFg": "#2f312d",
+        "darkFg": "#cecdc3",
+        "lightAccent": "#3d755d",
+        "darkAccent": "#4385be"
+      }
+    },
+    {
+      "id": "catppuccin",
+      "label": "Catppuccin",
+      "theme": {
+        "light": "Catppuccin Latte",
+        "dark": "Catppuccin Mocha"
+      },
+      "sources": {
+        "lightBg": "#eff1f5",
+        "lightFg": "#4c4f69",
+        "darkBg": "#1e1e2e",
+        "darkFg": "#cdd6f4",
+        "paper": "#eff1f5",
+        "red": {
+          "light": "#d20f39",
+          "dark": "#f38ba8"
+        },
+        "green": {
+          "light": "#40a02b",
+          "dark": "#a6e3a1"
+        },
+        "amber": {
+          "light": "#df8e1d",
+          "dark": "#f9e2af"
+        },
+        "blue": {
+          "light": "#1e66f5",
+          "dark": "#89b4fa"
+        },
+        "deepseek": {
+          "light": "#1e66f5",
+          "dark": "#89b4fa"
+        }
+      },
+      "preview": {
+        "lightBg": "#eff1f5",
+        "darkBg": "#1e1e2e",
+        "lightFg": "#4c4f69",
+        "darkFg": "#cdd6f4",
+        "lightAccent": "#1e66f5",
+        "darkAccent": "#89b4fa"
+      }
+    },
+    {
+      "id": "gruvbox",
+      "label": "Gruvbox",
+      "theme": {
+        "light": "Gruvbox Light",
+        "dark": "Gruvbox Dark"
+      },
+      "sources": {
+        "lightBg": "#fbf1c7",
+        "lightFg": "#3c3836",
+        "darkBg": "#282828",
+        "darkFg": "#ebdbb2",
+        "paper": "#fbf1c7",
+        "red": {
+          "light": "#cc241d",
+          "dark": "#cc241d"
+        },
+        "green": {
+          "light": "#98971a",
+          "dark": "#98971a"
+        },
+        "amber": {
+          "light": "#d79921",
+          "dark": "#d79921"
+        },
+        "blue": {
+          "light": "#458588",
+          "dark": "#458588"
+        },
+        "deepseek": {
+          "light": "#458588",
+          "dark": "#458588"
+        }
+      },
+      "preview": {
+        "lightBg": "#fbf1c7",
+        "darkBg": "#282828",
+        "lightFg": "#3c3836",
+        "darkFg": "#ebdbb2",
+        "lightAccent": "#458588",
+        "darkAccent": "#458588"
+      }
+    },
+    {
+      "id": "everforest",
+      "label": "Everforest",
+      "theme": {
+        "light": "Everforest Light Med",
+        "dark": "Everforest Dark Hard"
+      },
+      "sources": {
+        "lightBg": "#efebd4",
+        "lightFg": "#5c6a72",
+        "darkBg": "#1e2326",
+        "darkFg": "#d3c6aa",
+        "paper": "#efebd4",
+        "red": {
+          "light": "#e67e80",
+          "dark": "#e67e80"
+        },
+        "green": {
+          "light": "#9ab373",
+          "dark": "#a7c080"
+        },
+        "amber": {
+          "light": "#c1a266",
+          "dark": "#dbbc7f"
+        },
+        "blue": {
+          "light": "#7fbbb3",
+          "dark": "#7fbbb3"
+        },
+        "deepseek": {
+          "light": "#7fbbb3",
+          "dark": "#7fbbb3"
+        }
+      },
+      "preview": {
+        "lightBg": "#efebd4",
+        "darkBg": "#1e2326",
+        "lightFg": "#5c6a72",
+        "darkFg": "#d3c6aa",
+        "lightAccent": "#7fbbb3",
+        "darkAccent": "#7fbbb3"
+      }
+    },
+    {
+      "id": "github",
+      "label": "GitHub",
+      "theme": {
+        "light": "GitHub Light Default",
+        "dark": "GitHub Dark Default"
+      },
+      "sources": {
+        "lightBg": "#ffffff",
+        "lightFg": "#1f2328",
+        "darkBg": "#0d1117",
+        "darkFg": "#e6edf3",
+        "paper": "#ffffff",
+        "red": {
+          "light": "#cf222e",
+          "dark": "#ff7b72"
+        },
+        "green": {
+          "light": "#116329",
+          "dark": "#3fb950"
+        },
+        "amber": {
+          "light": "#4d2d00",
+          "dark": "#d29922"
+        },
+        "blue": {
+          "light": "#0969da",
+          "dark": "#58a6ff"
+        },
+        "deepseek": {
+          "light": "#0969da",
+          "dark": "#58a6ff"
+        }
+      },
+      "preview": {
+        "lightBg": "#ffffff",
+        "darkBg": "#0d1117",
+        "lightFg": "#1f2328",
+        "darkFg": "#e6edf3",
+        "lightAccent": "#0969da",
+        "darkAccent": "#58a6ff"
+      }
+    },
+    {
+      "id": "nord",
+      "label": "Nord",
+      "theme": {
+        "light": "Nord Light",
+        "dark": "Nord"
+      },
+      "sources": {
+        "lightBg": "#e5e9f0",
+        "lightFg": "#414858",
+        "darkBg": "#2e3440",
+        "darkFg": "#d8dee9",
+        "paper": "#e5e9f0",
+        "red": {
+          "light": "#bf616a",
+          "dark": "#bf616a"
+        },
+        "green": {
+          "light": "#96b17f",
+          "dark": "#a3be8c"
+        },
+        "amber": {
+          "light": "#c5a565",
+          "dark": "#ebcb8b"
+        },
+        "blue": {
+          "light": "#81a1c1",
+          "dark": "#81a1c1"
+        },
+        "deepseek": {
+          "light": "#81a1c1",
+          "dark": "#81a1c1"
+        }
+      },
+      "preview": {
+        "lightBg": "#e5e9f0",
+        "darkBg": "#2e3440",
+        "lightFg": "#414858",
+        "darkFg": "#d8dee9",
+        "lightAccent": "#81a1c1",
+        "darkAccent": "#81a1c1"
+      }
+    },
+    {
+      "id": "rose-pine",
+      "label": "Rosé Pine",
+      "theme": {
+        "light": "Rose Pine Dawn",
+        "dark": "Rose Pine Moon"
+      },
+      "sources": {
+        "lightBg": "#faf4ed",
+        "lightFg": "#575279",
+        "darkBg": "#232136",
+        "darkFg": "#e0def4",
+        "paper": "#faf4ed",
+        "red": {
+          "light": "#b4637a",
+          "dark": "#eb6f92"
+        },
+        "green": {
+          "light": "#286983",
+          "dark": "#3e8fb0"
+        },
+        "amber": {
+          "light": "#ea9d34",
+          "dark": "#f6c177"
+        },
+        "blue": {
+          "light": "#56949f",
+          "dark": "#9ccfd8"
+        },
+        "deepseek": {
+          "light": "#56949f",
+          "dark": "#9ccfd8"
+        }
+      },
+      "preview": {
+        "lightBg": "#faf4ed",
+        "darkBg": "#232136",
+        "lightFg": "#575279",
+        "darkFg": "#e0def4",
+        "lightAccent": "#56949f",
+        "darkAccent": "#9ccfd8"
+      }
+    },
+    {
+      "id": "kanagawa",
+      "label": "Kanagawa",
+      "theme": {
+        "light": "Kanagawa Lotus",
+        "dark": "Kanagawa Wave"
+      },
+      "sources": {
+        "lightBg": "#f2ecbc",
+        "lightFg": "#545464",
+        "darkBg": "#1f1f28",
+        "darkFg": "#dcd7ba",
+        "paper": "#f2ecbc",
+        "red": {
+          "light": "#c84053",
+          "dark": "#c34043"
+        },
+        "green": {
+          "light": "#6f894e",
+          "dark": "#76946a"
+        },
+        "amber": {
+          "light": "#77713f",
+          "dark": "#c0a36e"
+        },
+        "blue": {
+          "light": "#4d699b",
+          "dark": "#7e9cd8"
+        },
+        "deepseek": {
+          "light": "#4d699b",
+          "dark": "#7e9cd8"
+        }
+      },
+      "preview": {
+        "lightBg": "#f2ecbc",
+        "darkBg": "#1f1f28",
+        "lightFg": "#545464",
+        "darkFg": "#dcd7ba",
+        "lightAccent": "#4d699b",
+        "darkAccent": "#7e9cd8"
+      }
+    },
+    {
+      "id": "modus",
+      "label": "Modus",
+      "theme": {
+        "light": "Modus Operandi Tinted",
+        "dark": "Modus Vivendi Tinted"
+      },
+      "sources": {
+        "lightBg": "#fbf7f0",
+        "lightFg": "#000000",
+        "darkBg": "#0d0e1c",
+        "darkFg": "#ffffff",
+        "paper": "#fbf7f0",
+        "red": {
+          "light": "#a60000",
+          "dark": "#ff5f59"
+        },
+        "green": {
+          "light": "#006800",
+          "dark": "#44bc44"
+        },
+        "amber": {
+          "light": "#6f5500",
+          "dark": "#d0bc00"
+        },
+        "blue": {
+          "light": "#0031a9",
+          "dark": "#2fafff"
+        },
+        "deepseek": {
+          "light": "#0031a9",
+          "dark": "#2fafff"
+        }
+      },
+      "preview": {
+        "lightBg": "#fbf7f0",
+        "darkBg": "#0d0e1c",
+        "lightFg": "#000000",
+        "darkFg": "#ffffff",
+        "lightAccent": "#0031a9",
+        "darkAccent": "#2fafff"
+      }
+    },
+    {
+      "id": "atom-one",
+      "label": "Atom One",
+      "theme": {
+        "light": "Atom One Light",
+        "dark": "Atom One Dark"
+      },
+      "sources": {
+        "lightBg": "#f9f9f9",
+        "lightFg": "#2a2c33",
+        "darkBg": "#21252b",
+        "darkFg": "#abb2bf",
+        "paper": "#f9f9f9",
+        "red": {
+          "light": "#de3e35",
+          "dark": "#e06c75"
+        },
+        "green": {
+          "light": "#3f953a",
+          "dark": "#98c379"
+        },
+        "amber": {
+          "light": "#d2b67c",
+          "dark": "#e5c07b"
+        },
+        "blue": {
+          "light": "#2f5af3",
+          "dark": "#61afef"
+        },
+        "deepseek": {
+          "light": "#2f5af3",
+          "dark": "#61afef"
+        }
+      },
+      "preview": {
+        "lightBg": "#f9f9f9",
+        "darkBg": "#21252b",
+        "lightFg": "#2a2c33",
+        "darkFg": "#abb2bf",
+        "lightAccent": "#2f5af3",
+        "darkAccent": "#61afef"
+      }
+    }
+  ],
+  "report": [
+    {
+      "preset": "flexoki",
+      "tokens": 77,
+      "checks": {
+        "primary": {
+          "light": 11.84,
+          "dark": 11.98
+        },
+        "secondary": {
+          "light": 5.54,
+          "dark": 6.13
+        },
+        "tertiary": {
+          "light": 4.07,
+          "dark": 4.53
+        },
+        "surface separation (dark 950 vs 875)": {
+          "dark": 1.137
+        }
+      },
+      "failures": [],
+      "pass": true
+    },
+    {
+      "preset": "catppuccin",
+      "tokens": 77,
+      "checks": {
+        "primary": {
+          "light": 7.06,
+          "dark": 11.34
+        },
+        "secondary": {
+          "light": 4.51,
+          "dark": 6.17
+        },
+        "tertiary": {
+          "light": 3.02,
+          "dark": 4.69
+        },
+        "surface separation (dark 950 vs 875)": {
+          "dark": 1.195
+        }
+      },
+      "failures": [],
+      "pass": true
+    },
+    {
+      "preset": "gruvbox",
+      "tokens": 77,
+      "checks": {
+        "primary": {
+          "light": 10.22,
+          "dark": 10.75
+        },
+        "secondary": {
+          "light": 4.95,
+          "dark": 5.98
+        },
+        "tertiary": {
+          "light": 3.72,
+          "dark": 4.61
+        },
+        "surface separation (dark 950 vs 875)": {
+          "dark": 1.22
+        }
+      },
+      "failures": [],
+      "pass": true
+    },
+    {
+      "preset": "everforest",
+      "tokens": 77,
+      "checks": {
+        "primary": {
+          "light": 4.66,
+          "dark": 9.39
+        },
+        "secondary": {
+          "light": 4.44,
+          "dark": 5.31
+        },
+        "tertiary": {
+          "light": 3.02,
+          "dark": 4.13
+        },
+        "surface separation (dark 950 vs 875)": {
+          "dark": 1.188
+        }
+      },
+      "failures": [],
+      "pass": true
+    },
+    {
+      "preset": "github",
+      "tokens": 77,
+      "checks": {
+        "primary": {
+          "light": 15.8,
+          "dark": 16.02
+        },
+        "secondary": {
+          "light": 7.04,
+          "dark": 7.89
+        },
+        "tertiary": {
+          "light": 4.96,
+          "dark": 5.72
+        },
+        "surface separation (dark 950 vs 875)": {
+          "dark": 1.168
+        }
+      },
+      "failures": [],
+      "pass": true
+    },
+    {
+      "preset": "nord",
+      "tokens": 77,
+      "checks": {
+        "primary": {
+          "light": 7.52,
+          "dark": 9.25
+        },
+        "secondary": {
+          "light": 4.52,
+          "dark": 5.42
+        },
+        "tertiary": {
+          "light": 3.12,
+          "dark": 4.26
+        },
+        "surface separation (dark 950 vs 875)": {
+          "dark": 1.22
+        }
+      },
+      "failures": [],
+      "pass": true
+    },
+    {
+      "preset": "rose-pine",
+      "tokens": 77,
+      "checks": {
+        "primary": {
+          "light": 6.66,
+          "dark": 11.86
+        },
+        "secondary": {
+          "light": 4.54,
+          "dark": 6.5
+        },
+        "tertiary": {
+          "light": 3,
+          "dark": 4.92
+        },
+        "surface separation (dark 950 vs 875)": {
+          "dark": 1.221
+        }
+      },
+      "failures": [],
+      "pass": true
+    },
+    {
+      "preset": "kanagawa",
+      "tokens": 77,
+      "checks": {
+        "primary": {
+          "light": 6.19,
+          "dark": 11.26
+        },
+        "secondary": {
+          "light": 4.51,
+          "dark": 6.14
+        },
+        "tertiary": {
+          "light": 3.02,
+          "dark": 4.67
+        },
+        "surface separation (dark 950 vs 875)": {
+          "dark": 1.196
+        }
+      },
+      "failures": [],
+      "pass": true
+    },
+    {
+      "preset": "modus",
+      "tokens": 77,
+      "checks": {
+        "primary": {
+          "light": 19.66,
+          "dark": 19.15
+        },
+        "secondary": {
+          "light": 13.96,
+          "dark": 9.25
+        },
+        "tertiary": {
+          "light": 9.39,
+          "dark": 6.59
+        },
+        "surface separation (dark 950 vs 875)": {
+          "dark": 1.175
+        }
+      },
+      "failures": [],
+      "pass": true
+    },
+    {
+      "preset": "atom-one",
+      "tokens": 77,
+      "checks": {
+        "primary": {
+          "light": 13.24,
+          "dark": 7.22
+        },
+        "secondary": {
+          "light": 6.04,
+          "dark": 4.51
+        },
+        "tertiary": {
+          "light": 4.37,
+          "dark": 3.43
+        },
+        "surface separation (dark 950 vs 875)": {
+          "dark": 1.162
+        }
+      },
+      "failures": [],
+      "pass": true
+    }
+  ]
+}
