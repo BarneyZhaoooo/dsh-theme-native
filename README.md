@@ -10,7 +10,7 @@
 
 ## Preview
 
-![Theme settings](docs/settings.png)
+![Theme settings preview](docs/preview.jpg)
 
 ## Compatibility
 
