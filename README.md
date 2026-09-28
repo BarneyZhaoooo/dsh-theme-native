@@ -12,6 +12,8 @@
 
 ![Theme settings preview](docs/preview.jpg)
 
+![Flexoki theme settings](docs/settings.png)
+
 ## Compatibility
 
 - DSH Desktop / Web: `0.1.7-rc.2`
