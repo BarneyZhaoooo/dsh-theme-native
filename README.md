@@ -32,6 +32,14 @@ plugin_manager action=install_bundle target=/path/to/dsh-theme-native/plugin
 
 Do not edit the profile manifest by hand. After installation, open **Settings → Theme**.
 
+After the npm package is published, install the exact released version through the official plugin manager:
+
+```text
+plugin_manager action=install_bundle target=dsh-theme-native@0.1.0
+```
+
+On DSH Desktop, use **Settings → Plugin Market** after the community catalog entry is available. Remove the old local development bundle before installing the npm version so both copies do not mount together.
+
 ## Features
 
 - 10 presets: Flexoki, Catppuccin, Gruvbox, Everforest, GitHub, Nord, Rosé Pine, Kanagawa, Modus, and Atom One
