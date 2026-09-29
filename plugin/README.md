@@ -11,7 +11,7 @@ Native theme customization for the DeepSeek Harness Web GUI.
 Install through the Harness plugin manager:
 
 ```text
-plugin_manager action=install_bundle target=dsh-theme-native@0.1.1
+plugin_manager action=install_bundle target=dsh-theme-native@0.1.2
 ```
 
 The source repository, screenshots, verification commands, and development notes are available at:
