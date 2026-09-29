@@ -13,7 +13,7 @@ node tools/verify-manifest.mjs
 node tools/simulate-client.mjs
 ```
 
-提交 UI 改动时，请说明 DSH 版本，并附上实际设置页截图。不要提交个人路径、账号信息、凭证或本机生成的配置文件。
+提交 UI 改动时，请说明 DSH 版本，并附上实际设置页截图。兼容性改动还要同时检查 `peerDependencies` 与官方插件管理器的版本诊断。不要提交个人路径、账号信息、凭证或本机生成的配置文件。
 
 ## 设计边界
 

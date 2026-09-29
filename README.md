@@ -16,9 +16,9 @@
 
 ## Compatibility
 
-- DSH Desktop / Web: `0.1.7-rc.2`
-- Last verified: September 28, 2026
-- Package: `dsh-theme-native@0.1.0`
+- DSH Desktop / Web: `0.1.7-rc.2` and `0.2.0-rc.1`
+- Last verified: September 29, 2026
+- Package: `dsh-theme-native@0.1.1`
 
 ## Install
 
@@ -35,7 +35,7 @@ Do not edit the profile manifest by hand. After installation, open **Settings â†
 After the npm package is published, install the exact released version through the official plugin manager:
 
 ```text
-plugin_manager action=install_bundle target=dsh-theme-native@0.1.0
+plugin_manager action=install_bundle target=dsh-theme-native@0.1.1
 ```
 
 On DSH Desktop, use **Settings â†’ Plugin Market** after the community catalog entry is available. Remove the old local development bundle before installing the npm version so both copies do not mount together.
